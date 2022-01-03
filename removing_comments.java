@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 //Removing Comments
 
 /*
@@ -27,86 +30,67 @@ After removing the comments from the source code, return the source code in the 
 
 */
 
-class Solution {
-    public void gameOfLife(int[][] board) {
-        int[][] newBoard = new int[board.length][board[0].length];
-        for (int i = 0; i < board.length; i++) {
-            for(int j = 0; j < board[i].length; j++) {
-                int currentCell = board[i][j];
-                System.out.println("Current cell " + currentCell + " ------------------------------------");
-                
-                int numberOfLive = 0;
-                
-                if((j - 1) > -1) {
-                    // System.out.println("Cell in behind " + board[i][(j-1)]);
-                    numberOfLive += board[i][j-1];
-                }
-                
-                if((j+1) < board[i].length ){
-                    // System.out.println("Cell in front " + board[i][j+1]);
-                    numberOfLive += board[i][j+1];
-                }
-                
-                if((i - 1) >= 0) {
-                    // System.out.println("Cell directly above " + board[i - 1][j]);
-                    numberOfLive += board[i - 1][j];    
+class RemovingCommentsSolutions {
+    public List<String> removeComments(String[] source) {
+        
+        List<String> newList = new ArrayList();        
+        boolean inScope = true;
+        
+        StringBuilder str = new StringBuilder();
+
+        for(int i =0; i < source.length; i++){
+            char[] charArray = source[i].toCharArray();
+            int m = charArray.length;
+            int j = 0;
+            
+            while(j < m) {
+                if(inScope && (j + 1)< m && source[i].substring(j, j+2).equals("/*")) {
+                    inScope = false;
+                    j += 2;
                     
-                    if((j - 1) >= 0) {
-                        // System.out.println("Cell diagonal up-left " + board[i - 1][j-1]);
-                        numberOfLive += board[i - 1][j-1];
-                    }
+                    System.out.println("Encountered /*");
+                } else if(inScope && (j+1) < m && source[i].substring(j, j+2).equals("//")) {
+                    addTolist(str, newList);
                     
-                    if((j+1) < board[i].length ){
-                        // System.out.println("Cell diagonal up-right " + board[i - 1][j+1]);
-                        numberOfLive += board[i - 1][j+1];
-                    }
-                }
-                
-                if((i + 1) < board.length) {
-                    // System.out.println("Cell directly below " + board[i + 1][j]);
-                    numberOfLive += board[i + 1][j];
+                    System.out.println("Encountered // skipped line");
+                    break;
+                } else if(inScope){
+                    str.append(charArray[j]);
                     
-                    if((j - 1) >= 0) {
-                        // System.out.println("Cell diagonal down-left " + board[i + 1][j-1]);
-                        numberOfLive += board[i + 1][j-1];
+                    if(j == m-1){
+                       addTolist(str, newList); 
                     }
                     
-                    if((j+1) < board[i].length ){
-                        // System.out.println("Cell diagonal down-right " + board[i + 1][j+1]);
-                        numberOfLive += board[i + 1][j+1];
+                    j++;
+                } else if(!inScope && (j+1) < m && source[i].substring(j, j+2).equals("*/")) {
+                    
+                    if(j == m-2){
+                       addTolist(str, newList); 
                     }
+                    
+                    j +=2;
+                    inScope = true;
+                    
+                    
+                    
+                    System.out.println("Encountered */");
+                } else {
+                    j++;
                 }
-                
-                System.out.println("Answer: " + numberOfLive);
-                
-                if(currentCell == 1){
-                    System.out.println("Alive Cell");
-                    if(numberOfLive == 2 || numberOfLive ==3) {
-                        System.out.println("Current cell: " + currentCell + " on row: " + i + " on column: " + j + " should be 1");
-                       newBoard[i][j] = 1;
-                   } else {
-                       newBoard[i][j] = 0;
-                        System.out.println("Current cell: " + currentCell + " on row: " + i + " on column: " + j + " should be 0");
-                   }
-                }else {
-                    System.out.println("Dead Cell");
-                    if(numberOfLive == 3) {
-                        newBoard[i][j] = 1;
-                        System.out.println("Current cell: " + currentCell + " on row: " + i + " on column: " + j + " should be 1");
-                    }
-                }
-                
-                
-                
             }
         }
         
-        for (int i = 0; i < board.length; i++) {
-            for(int j = 0; j < board[i].length; j++) {
-                board[i][j] = newBoard[i][j];
-            }
+        return newList;
+    }
+    
+    void addTolist(StringBuilder str, List<String> list) {
+        System.out.println(str.toString());
+        String stringToBeAdded = str.toString();
+        if(!stringToBeAdded.isEmpty()){
+           list.add(stringToBeAdded); 
         }
         
+       str.setLength(0); 
     }
 }
 

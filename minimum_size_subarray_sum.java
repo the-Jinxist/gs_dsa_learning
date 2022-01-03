@@ -19,7 +19,7 @@ Example 1:
     Output: 0
 */
 
-class Solution {
+class MinimumSizeSubArraySumSolution {
     public int minSubArrayLen(int target, int[] nums) {
         int output = 0;
         

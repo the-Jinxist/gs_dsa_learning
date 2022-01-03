@@ -28,7 +28,7 @@ In how many distinct ways can you climb to the top?
 
 */
 
-class Solution {
+class ClimbingStairsSolution {
     public int climbStairs(int n) {
         
         if(n < 2){

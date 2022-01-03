@@ -12,7 +12,7 @@ Any dead cell with exactly three live neighbors becomes a live cell, as if by re
 The next state is created by applying the above rules simultaneously to every cell in the current state, where births and deaths occur simultaneously. Given the current state of the m x n grid board, return the next state.
 */
 
-class Solution {
+class GameOfLifeSolution {
     public void gameOfLife(int[][] board) {
         int[][] newBoard = new int[board.length][board[0].length];
         for (int i = 0; i < board.length; i++) {

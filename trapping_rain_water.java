@@ -20,7 +20,7 @@ compute how much water it can trap after raining.
 
 */
 
-class Solution {
+class TrappingRainWaterSolution {
     public int trap(int[] height) {
         
         if(height.length < 2){
