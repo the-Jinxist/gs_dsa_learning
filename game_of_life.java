@@ -13,6 +13,25 @@ The next state is created by applying the above rules simultaneously to every ce
 */
 
 class GameOfLifeSolution {
+
+    //This is actually quite straightforward. Firstly, you'll need to know the exact ways to check the neigbhours. They are:
+    //if i is the row and j is the column
+    //[i-1][j-1] top left of the current cell
+    //[i-1][j] directly above the current cell
+    //[i-1][j+1] top right of the current cell
+    //[i][j-1] cell before the current cell
+    //[i][j] current cell🌚
+    //[i][j+1] cell after the current cell
+    //[i+1][j-1] bottom left of the current cell
+    //[i+1][j] cell directly below the current cell
+    //[i+1][j+1] bottom right cell of the current cell
+    
+    //After knowing this create a variable to store the live count
+    //Then run the live count through the rules already stated/
+
+    //Remeber to use another multi-dimensional array to store the changed values
+    //then set the original multi-dimensional array to the new mutlidimensional array.
+
     public void gameOfLife(int[][] board) {
         int[][] newBoard = new int[board.length][board[0].length];
         for (int i = 0; i < board.length; i++) {

@@ -29,6 +29,16 @@ In how many distinct ways can you climb to the top?
 */
 
 class ClimbingStairsSolution {
+
+    //The solution to this is basically the solution to solving the fibonacci sequence
+    //Basically: f(n) = f(n-2) + f(n-1)
+    //Create variables to store f(n), f(n-2), f(n-1)
+    //here, it's answer, firstAnser and secondAnswer respectively.
+
+    //Calculate f(n) = f(n-2) + f(n-1)
+    //Assign the answer of f(n-2) to f(n-1)'s variable
+    //Assign the f(n) to f(n-2)'s variable
+
     public int climbStairs(int n) {
         
         if(n < 2){
