@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /*
  * 
  * Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
@@ -41,6 +43,32 @@ public class TwoSum {
         int[] myArray = {currentValue, foundElement};
         
         return myArray;
+    }
+
+    //Optimal solution.
+
+    
+    public int[] twoSumOptimal(int[] nums, int target) {
+        HashMap<Integer, Integer> values = new HashMap<Integer, Integer>();
+        
+        for(int i = 0; i < nums.length; i++){
+            //Do this calculation to see the required number that must be added with the current item in this index to
+            //make up the target
+            int requiredNumber = target - nums[i]; 
+
+            //Check if the hashmap already contains the required number, if it does, return the index which is the value(the required number being the key)
+            //along with the current index.
+            if(values.containsKey(requiredNumber)){
+                int[] array = {values.get(requiredNumber), i};
+                return array;
+            }else{
+                //Use the hashmap to store each value and index on your iteration
+                values.put(nums[i], i);
+            }
+        }
+        
+        int[] array = {0};
+        return array;
     }
 
 }
