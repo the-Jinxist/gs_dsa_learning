@@ -2,6 +2,11 @@ public class IsPalindrome {
 
     //Two pointer problem. One pointer to go from the beginning and one to go from the end.
     //Every element selected by each pointer must match
+
+    //Unlike the longest palindrome problem, we can build in from the ends of the string because it is straightforward
+
+    //If you want to build out from the middle, you'll have to remove all the unwanted characters in the string, which would take time
+    
     public boolean isPalindrome(String s) {
         
         s = s.trim();
