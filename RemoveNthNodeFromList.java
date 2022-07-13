@@ -68,7 +68,10 @@ public class RemoveNthNodeFromList {
     //Optimal Solution
 
     //We using two pointer nodes to solve this problem. One fast node is sent far into the future using the first
-    //for loop
+    //for loop, then we keep itering until the fast loop is null, at that point the slow pointer should be just behing the 
+    //node we're supposed to remove.
+
+    //then we execute slow.next = slow.next.next
     public ListNode removeNthFromEndOptimal(ListNode head, int n){
 
         //0 [1,2,3,4,5,6,7,8,9], n = 3
